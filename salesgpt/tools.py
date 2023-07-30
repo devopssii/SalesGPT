@@ -4,16 +4,22 @@ from langchain.embeddings.openai import OpenAIEmbeddings
 from langchain.llms import OpenAI
 from langchain.text_splitter import CharacterTextSplitter
 from langchain.vectorstores import Chroma
-
+import pandas as pd
 
 def setup_knowledge_base(product_catalog: str = None):
     """
     We assume that the product catalog is simply a text string.
     """
     # load product catalog
-    with open(product_catalog, "r") as f:
-        product_catalog = f.read()
+    if file_format.lower() == "csv":
+        df = pd.read_csv(product_catalog)
+    elif file_format.lower() == "json":
+        df = pd.read_json(product_catalog)
+    else:
+        raise ValueError("Invalid file_format. Expected 'csv' or 'json'.")
 
+    # Convert the dataframe to a large text string
+    product_catalog = df.to_string()
     text_splitter = CharacterTextSplitter(chunk_size=10, chunk_overlap=0)
     texts = text_splitter.split_text(product_catalog)
 

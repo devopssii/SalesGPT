@@ -7,7 +7,7 @@ from langchain.schema import AgentAction, AgentFinish  # OutputParserException
 
 
 class SalesConvoOutputParser(AgentOutputParser):
-    ai_prefix: str = "AI"  # change for salesperson_name
+    ai_prefix: str = "Андрей"  # change for salesperson_name
     verbose: bool = False
 
     def get_format_instructions(self) -> str:

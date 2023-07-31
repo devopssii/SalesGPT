@@ -11,12 +11,7 @@ def setup_knowledge_base(product_catalog: str = None):
     We assume that the product catalog is simply a text string.
     """
     # load product catalog
-    if file_format.lower() == "csv":
-        df = pd.read_csv(product_catalog)
-    elif file_format.lower() == "json":
-        df = pd.read_json(product_catalog)
-    else:
-        raise ValueError("Invalid file_format. Expected 'csv' or 'json'.")
+    df = pd.read_csv(product_catalog)
 
     # Convert the dataframe to a large text string
     product_catalog = df.to_string()

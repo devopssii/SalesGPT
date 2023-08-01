@@ -145,6 +145,10 @@ class SalesGPT(Chain, BaseModel):
 
     def _call(self, inputs: Dict[str, Any]) -> None:
         """Run one step of the sales agent."""
+        if self.current_conversation_stage == 5:  # assuming 5 corresponds to "Presentation of the solution"
+            self.use_tools = True
+        else:
+            self.use_tools = False
 
         # Generate agent's utterance
         # if use tools

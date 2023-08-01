@@ -13,10 +13,8 @@ def setup_knowledge_base(product_catalog: str = None):
     # load product catalog
     df = pd.read_csv(product_catalog)
 
-    # Convert the dataframe to a large text string
-    product_catalog = df.to_string()
-    text_splitter = CharacterTextSplitter(chunk_size=10, chunk_overlap=0)
-    texts = text_splitter.split_text(product_catalog)
+    # Convert each row of the dataframe to a separate string and store them in a list
+    texts = df.apply(lambda row: ' '.join(row.astype(str)), axis=1).tolist()
 
     llm = OpenAI(temperature=0)
     embeddings = OpenAIEmbeddings()

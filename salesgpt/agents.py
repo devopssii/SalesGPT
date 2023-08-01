@@ -29,7 +29,7 @@ class SalesGPT(Chain, BaseModel):
     sales_conversation_utterance_chain: SalesConversationChain = Field(...)
     conversation_stage_dict: Dict = CONVERSATION_STAGES
 
-    use_tools: bool = True
+    use_tools: bool = False
     salesperson_name: str = "Ted Lasso"
     salesperson_role: str = "Business Development Representative"
     company_name: str = "Sleep Haven"

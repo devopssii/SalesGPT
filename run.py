@@ -38,7 +38,7 @@ if __name__ == "__main__":
         USE_TOOLS=True
         if USE_TOOLS:
             sales_agent = SalesGPT.from_llm(llm, use_tools=True, 
-                                    product_catalog = "/home/marketing_rzk/examples/television.csv",
+                                    product_catalog = "examples/television.csv",
                                     salesperson_name="Ted Lasso",
                                     verbose=verbose)
         else:

@@ -30,12 +30,12 @@ class SalesGPT(Chain, BaseModel):
     conversation_stage_dict: Dict = CONVERSATION_STAGES
 
     use_tools: bool = False
-    salesperson_name: str = "Ted Lasso"
-    salesperson_role: str = "Business Development Representative"
-    company_name: str = "Sleep Haven"
-    company_business: str = "Sleep Haven is a premium mattress company that provides customers with the most comfortable and supportive sleeping experience possible. We offer a range of high-quality mattresses, pillows, and bedding accessories that are designed to meet the unique needs of our customers."
-    company_values: str = "Our mission at Sleep Haven is to help people achieve a better night's sleep by providing them with the best possible sleep solutions. We believe that quality sleep is essential to overall health and well-being, and we are committed to helping our customers achieve optimal sleep by offering exceptional products and customer service."
-    conversation_purpose: str = "find out whether they are looking to achieve better sleep via buying a premier mattress."
+    salesperson_name: str = "Андрей"
+    salesperson_role: str = "Старший вице-президент по развитию"
+    company_name: str = "Presino"
+    company_business: str = "Presino — китайская компания, производящая технику, в том числе современные и конкурентоспособные телевизоры по доступной цене. Смарт-телевизоры Presino на базе операционной системы Android 11 с детализированным изображением поддерживают все популярные форматы видео и аудио. Динамики Dolby Digital позволяют погрузиться в любимые телепередачи и фильмы, а встроенный Wi-Fi дает доступ ко всем необходимым приложениям!"
+    company_values: str = "Наша миссия в Presino – предоставить покупателям качественные и современные телевизоры с учетом всех необходимых требований времени, по более низким ценам, чем аналоги, но ничем не уступающие в использовании."
+    conversation_purpose: str = "узнать, ищет ли потенциальный клиент новый телевизор."
     conversation_type: str = "call"
 
     def retrieve_conversation_stage(self, key):

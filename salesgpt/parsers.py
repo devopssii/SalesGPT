@@ -26,7 +26,15 @@ class SalesConvoOutputParser(AgentOutputParser):
         #regex = r"Action: (.*?)[\n]*Action Input: (.*)"
         regex = r"Action:\s*(.*?)\nInput:\s*(.*)"
         match = re.search(regex, text)
-        if not match:
+        if match:
+
+            action = match.group(1)
+            action_input = match.group(2)
+
+        # Тут не хватает return
+            return AgentAction(action, action_input, text)
+        
+        else:
             ## TODO - this is not entirely reliable, sometimes results in an error.
             return AgentFinish(
                 {
@@ -35,9 +43,9 @@ class SalesConvoOutputParser(AgentOutputParser):
                 text,
             )
             # raise OutputParserException(f"Could not parse LLM output: `{text}`")
-        action = match.group(1)
-        action_input = match.group(2)
-        return AgentAction(action.strip(), action_input.strip(" ").strip('"'), text)
+        #action = match.group(1)
+        #action_input = match.group(2)
+        #return AgentAction(action.strip(), action_input.strip(" ").strip('"'), text)
 
     @property
     def _type(self) -> str:

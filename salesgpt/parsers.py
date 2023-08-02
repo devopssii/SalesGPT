@@ -22,7 +22,9 @@ class SalesConvoOutputParser(AgentOutputParser):
             return AgentFinish(
                 {"output": text.split(f"{self.ai_prefix}:")[-1].strip()}, text
             )
-        regex = r"Action: (.*?)[\n]*Action Input: (.*)"
+        #regex = r"Action\s*\d*\s*:(.*?)\nAction\s*\d*\s*Input\s*\d*\s*:[\s]*(.*)"
+        #regex = r"Action: (.*?)[\n]*Action Input: (.*)"
+        regex = r"Action:\s*(.*?)\nInput:\s*(.*)"
         match = re.search(regex, text)
         if not match:
             ## TODO - this is not entirely reliable, sometimes results in an error.

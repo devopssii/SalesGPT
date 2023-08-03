@@ -15,11 +15,19 @@ def setup_knowledge_base(product_catalog: str = None):
 
     # Convert each row of the dataframe to a separate string and store them in a list
     texts = df.apply(lambda row: ' '.join(row.astype(str)), axis=1).tolist()
-
+    
+    text_splitter = CharacterTextSplitter(
+        separator="\n",
+        chunk_size=1000,
+        chunk_overlap=200,
+        length_function=len
+    )
+    chunks = text_splitter.split_text(texts)
+    
     llm = OpenAI(temperature=0)
     embeddings = OpenAIEmbeddings()
     docsearch = Chroma.from_texts(
-        texts, embeddings, collection_name="product-knowledge-base"
+         chunks, embeddings, collection_name="product-knowledge-base"
     )
 
     knowledge_base = RetrievalQA.from_chain_type(
